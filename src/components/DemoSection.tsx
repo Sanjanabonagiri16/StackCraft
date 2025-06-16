@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Play, Code, Database, Layout } from 'lucide-react';
+import { Play, ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
 
 const DemoSection = () => {
   const [activeDemo, setActiveDemo] = useState(0);
@@ -10,18 +10,21 @@ const DemoSection = () => {
   const demos = [
     {
       input: "Create a blog app with user login, comment section, and admin panel",
-      output: "Generated full-stack blog application with authentication, CRUD operations, and admin dashboard",
-      features: ["User Authentication", "Comment System", "Admin Dashboard", "Database Models"]
+      plainLanguage: "I want users to write posts, leave comments, and have admins manage everything",
+      output: "Complete blog platform with user authentication, commenting system, and admin dashboard",
+      features: ["User Registration & Login", "Rich Text Editor", "Comment System", "Admin Panel", "User Profiles", "Content Management"]
     },
     {
       input: "Build an e-commerce store with shopping cart and payment integration",
-      output: "Complete online store with product catalog, cart functionality, and Stripe integration",
-      features: ["Product Catalog", "Shopping Cart", "Payment Gateway", "Order Management"]
+      plainLanguage: "People should browse products, add them to cart, and pay securely online",
+      output: "Full online store with product catalog, cart functionality, and secure payments",
+      features: ["Product Catalog", "Shopping Cart", "Stripe Integration", "Order Management", "Inventory Tracking", "Customer Portal"]
     },
     {
       input: "Make a task management app with team collaboration features",
-      output: "Project management tool with real-time collaboration and task tracking",
-      features: ["Task Management", "Team Collaboration", "Real-time Updates", "Progress Tracking"]
+      plainLanguage: "Teams need to assign tasks, track progress, and work together efficiently",
+      output: "Project management tool with real-time collaboration and progress tracking",
+      features: ["Task Assignment", "Team Chat", "Progress Tracking", "File Sharing", "Notifications", "Time Tracking"]
     }
   ];
 
@@ -30,13 +33,13 @@ const DemoSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            See It In{" "}
+            From Plain English to{" "}
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Action
+              Working App
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Watch how our AI transforms simple descriptions into complete, working applications
+            Watch how simple descriptions transform into complete, functional applications in real-time
           </p>
         </div>
         
@@ -46,20 +49,37 @@ const DemoSection = () => {
               {demos.map((demo, index) => (
                 <Card 
                   key={index}
-                  className={`p-6 cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                  className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
                     activeDemo === index ? 'ring-2 ring-purple-500 bg-purple-50' : 'hover:bg-gray-50'
                   }`}
                   onClick={() => setActiveDemo(index)}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                      activeDemo === index ? 'bg-purple-500 text-white' : 'bg-gray-200 text-gray-600'
-                    }`}>
-                      {index + 1}
+                  <div className="p-6">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                        activeDemo === index ? 'bg-purple-500 text-white' : 'bg-gray-200 text-gray-600'
+                      }`}>
+                        {index + 1}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <MessageSquare className="w-4 h-4 text-gray-500" />
+                          <span className="text-sm font-medium text-gray-500">You say:</span>
+                        </div>
+                        <div className="text-gray-700 mb-3 italic bg-gray-100 p-3 rounded-lg">
+                          "{demo.plainLanguage}"
+                        </div>
+                        
+                        <div className="flex items-center gap-2 mb-2">
+                          <Sparkles className="w-4 h-4 text-purple-500" />
+                          <span className="text-sm font-medium text-purple-600">AI understands:</span>
+                        </div>
+                        <div className="text-gray-600 text-sm">"{demo.input}"</div>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <div className="font-medium text-gray-900 mb-2">Input:</div>
-                      <div className="text-gray-600 italic">"{demo.input}"</div>
+                    
+                    <div className="flex items-center justify-center py-2">
+                      <ArrowRight className="w-5 h-5 text-gray-400" />
                     </div>
                   </div>
                 </Card>
@@ -68,7 +88,7 @@ const DemoSection = () => {
             
             <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-6 text-lg font-semibold rounded-xl">
               <Play className="mr-2 w-5 h-5" />
-              Try Interactive Demo
+              Try It Yourself - It's Free!
             </Button>
           </div>
           
@@ -79,33 +99,29 @@ const DemoSection = () => {
                   <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="ml-4 text-sm text-gray-400">Generated Application</span>
+                  <span className="ml-4 text-sm text-gray-400">Generated in 15 seconds</span>
                 </div>
                 
-                <h3 className="text-xl font-bold mb-4">{demos[activeDemo].output}</h3>
+                <div className="flex items-center gap-2 mb-4">
+                  <Sparkles className="w-5 h-5 text-yellow-400" />
+                  <span className="text-lg font-semibold">AI Generated Result:</span>
+                </div>
                 
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <h3 className="text-xl font-bold mb-6 text-green-400">{demos[activeDemo].output}</h3>
+                
+                <div className="grid grid-cols-2 gap-3 mb-6">
                   {demos[activeDemo].features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      {feature}
+                    <div key={index} className="flex items-center gap-2 text-sm bg-white/10 rounded-lg p-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
+                      <span className="truncate">{feature}</span>
                     </div>
                   ))}
                 </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 p-3 bg-white/10 rounded-lg">
-                  <Layout className="w-5 h-5 text-blue-400" />
-                  <span className="text-sm">Frontend UI Components</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-white/10 rounded-lg">
-                  <Code className="w-5 h-5 text-green-400" />
-                  <span className="text-sm">Backend API Endpoints</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-white/10 rounded-lg">
-                  <Database className="w-5 h-5 text-purple-400" />
-                  <span className="text-sm">Database Schema</span>
+                
+                <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4">
+                  <p className="text-green-300 text-sm font-medium">
+                    ✨ Complete with database, authentication, responsive design, and deployment-ready code
+                  </p>
                 </div>
               </div>
             </Card>
